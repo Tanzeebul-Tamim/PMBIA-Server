@@ -299,5 +299,150 @@
                 "totalStudent": 4
             }
         ]
+    },
+    {
+        "name": "Kenny Belaey",
+        "email": "kenny@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_1336,y_0,h_3299,w_3299/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2020/6/16/yyt0lox62murpqiwvpvo/kenny-belaey",
+        "role": "instructor",
+        "quote": "Focusing solely on the win...",
+        "classes": [
+           
+            {
+                "name": "Street Trials Fundamentals",
+                "image": "https://i.ytimg.com/vi/MeVKa-sfU20/maxresdefault.jpg",
+                "price": 780,
+                "studentSlot": 10,
+                "totalStudent": 4
+            },
+            {
+                "name": "Advanced Street Trials Techniques",
+                "image": "https://i.ytimg.com/vi/bFzZZJH_X0E/hqdefault.jpg",
+                "price": 380,
+                "studentSlot": 15,
+                "totalStudent": 6
+            }
+        ]
+    },
+    {
+        "name": "Petr Kraus",
+        "email": "petr@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_1317,y_0,h_3395,w_3395/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2020/9/8/m747ne5rawisa7f1rj8f/petr-kraus-lebanon",
+        "role": "instructor",
+        "classes": [
+           
+            {
+                "name": "Urban Trials Mastery",
+                "image": "https://i.ytimg.com/vi/clervpwKLYg/maxresdefault.jpg",
+                "price": 580,
+                "studentSlot": 17,
+                "totalStudent": 9
+            },
+            {
+                "name": "Street Trials Skills Workshop",
+                "image": "https://i.ytimg.com/vi/I5CAjXvUeZA/maxresdefault.jpg",
+                "price": 380,
+                "studentSlot": 15,
+                "totalStudent": 6
+            },
+            {
+                "name": "Street Trials Balance and Flow",
+                "image": "https://i.ytimg.com/vi/nzjeWHnWijM/maxresdefault.jpg",
+                "price": 350,
+                "studentSlot": 20,
+                "totalStudent": 7
+            }
+        ]
+    },
+    {
+        "name": "Danny Macaskill",
+        "email": "danny@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_0,y_508,h_2560,w_2560/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2022/11/29/n4e2jcwvepvsn24snt9u/danny-macaskill-portrait-2022",
+        "role": "instructor",
+        "quote": "It's better than sitting watching TV",
+        "classes": [
+           
+            {
+                "name": "Hops and Drops",
+                "image": "https://i.ytimg.com/vi/yLsD0l8o1xg/maxresdefault.jpg",
+                "price": 480,
+                "studentSlot": 27,
+                "totalStudent": 19
+            },
+            {
+                "name": "Street Trials Jumping Clinic",
+                "image": "https://i.ytimg.com/vi/Lntt0Ar7FMU/maxresdefault.jpg",
+                "price": 350,
+                "studentSlot": 25,
+                "totalStudent": 16
+            },
+            {
+                "name": "Street Trials Overcoming Urban Obstacles",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/7/75/Trials_court.jpg",
+                "price": 345,
+                "studentSlot": 10,
+                "totalStudent": 7
+            }
+        ]
+    },
+    {
+        "name": "Tomomi Nishikubo",
+        "email": "tomomi@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_2084,y_28,h_2527,w_2527/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2021/5/4/hcjqlk7ikqpcwj6nwmyp/tomomi-nishikubo",
+        "role": "instructor",
+        "classes": [
+           
+            {
+                "name": "Technical Street Trials",
+                "image": "https://bikerumor.com/wp-content/uploads/2022/04/Canyon-Stitched-CFR-Trial-carbon-street-trials-bike_photo-by-Hannes-Berger_hop.jpg.jpg",
+                "price": 680,
+                "studentSlot": 17,
+                "totalStudent": 14
+            },
+            {
+                "name": "Enhancing Bike Handling Skills",
+                "image": "https://i.ytimg.com/vi/yDAitnHDXmA/maxresdefault.jpg",
+                "price": 330,
+                "studentSlot": 15,
+                "totalStudent": 11
+            }
+        ]
+    },
+    {
+        "name": "Thomas Oehler",
+        "email": "oehler@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_297,y_919,h_983,w_983/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2016/04/11/1331787952574_2/tom-oehler",
+        "role": "instructor",
+        "quote": "The tricky lines are the best...",
+        "classes": [
+            {
+                "name": "Mastering the Street Trials Basics",
+                "image": "https://i.ytimg.com/vi/KHW098hG9Ig/maxresdefault.jpg",
+                "price": 380,
+                "studentSlot": 11,
+                "totalStudent": 10
+            },
+            {
+                "name": "Street Trials Progression Program",
+                "image": "https://i.ytimg.com/vi/KHW098hG9Ig/maxresdefault.jpg",
+                "price": 530,
+                "studentSlot": 25,
+                "totalStudent": 17
+            },
+            {
+                "name": "Street Trials Line Choice Workshop",
+                "image": "https://i.ytimg.com/vi/wIc2Hll0IkI/maxresdefault.jpg",
+                "price": 350,
+                "studentSlot": 19,
+                "totalStudent": 14
+            },
+            {
+                "name": "Street Trials Freestyle",
+                "image": "https://i.nextmedia.com.au/Utils/ImageResizer.ashx?n=http%3A%2F%2Fi.nextmedia.com.au%2FFeatures%2Fczar-2695.jpg&c=1",
+                "price": 380,
+                "studentSlot": 29,
+                "totalStudent": 13
+            }
+        ]
     }
 ]

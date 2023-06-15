@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const cors = require('cors');
-require('dotenv').config();
+const cors = require("cors");
+require("dotenv").config();
 const port = process.env.PORT || 5000;
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
 // middleware
 app.use(cors());
@@ -17,7 +17,7 @@ const client = new MongoClient(uri, {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  }
+  },
 });
 
 async function run() {
@@ -27,17 +27,65 @@ async function run() {
 
     const userCollection = client.db("PMBIA").collection("users");
 
-    app.get('/instructors', async(req, res) => {
-        const count = parseInt(req.query.count) || 0;
-        const search = req.query.search;
-        const query = search ? { role: 'instructor', name: { $regex: search, $options: 'i' } } : { role: 'instructor' };
-        const result = await userCollection.find(query).limit(count).toArray();
-        res.send(result);
-    })
+    // get all instructors
+    app.get("/instructors", async (req, res) => {
+      const count = parseInt(req.query.count) || 0;
+      const search = req.query.search;
+      const query = search
+        ? { role: "instructor", name: { $regex: search, $options: "i" } }
+        : { role: "instructor" };
+      const result = await userCollection.find(query).limit(count).toArray();
+      res.send(result);
+    });
+
+    // get number of instructors
+    app.get("/instructors/total", async (req, res) => {
+      const query = { role: "instructor" };
+      const count = await userCollection.countDocuments(query);
+      res.send({ totalInstructors: count });
+    });
+
+    // get all classes
+    app.get("/classes", async (req, res) => {
+      const count = parseInt(req.query.count);
+      const search = req.query.search;
+      const query = { role: "instructor" };
+      const instructors = await userCollection.find(query).toArray();
+
+      let classes = instructors.flatMap((instructor) => {
+        const instructorName = instructor.name;
+        return instructor.classes.map((classItem) => ({
+          ...classItem,
+          instructorName,
+        }));
+      });
+
+      if (search) {
+        classes = classes.filter((classItem) =>
+          classItem.name.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+
+      classes = classes.slice(0, count);
+
+      res.send(classes);
+    });
+
+    // get number of classes
+    app.get("/classes/total", async (req, res) => {
+      const query = { role: "instructor" };
+      const instructors = await userCollection.find(query).toArray();
+      const totalClasses = instructors.reduce((total, instructor) => {
+        return total + instructor.classes.length;
+      }, 0);
+      res.send({ totalClasses });
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
@@ -45,11 +93,10 @@ async function run() {
 }
 run().catch(console.dir);
 
-
-app.get('/', (req, res) => {
-    res.send(`PMBIA server is active on port: ${port}`);
-})
+app.get("/", (req, res) => {
+  res.send(`PMBIA server is active on port: ${port}`);
+});
 
 app.listen(port, () => {
-    console.log(`PMBIA server is running on port: ${port}`);
-})
+  console.log(`PMBIA server is running on port: ${port}`);
+});
