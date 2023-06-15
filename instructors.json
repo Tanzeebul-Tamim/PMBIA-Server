@@ -1,0 +1,303 @@
+[
+    {
+        "name": "Pavel Alekhin",
+        "email": "pavel@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_588,y_0,h_2134,w_2134/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2020/12/9/vu0d4plpds1yjp0mb0re/pavel-alekhin-2020",
+        "role": "instructor",
+        "quote": "I ride for pleasure",
+        "classes": [
+            {
+                "name": "Trail Riding Fundamentals",
+                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb6D9SiRqLt6jONNoffcLNAQ3rwj_MXVZEPQ&usqp=CAU",
+                "price": 500,
+                "studentSlot": 10,
+                "totalStudent": 6
+            },
+            {
+                "name": "Jumping and Drops",
+                "image": "https://i.ytimg.com/vi/UvTBcaxI1C0/maxresdefault.jpg",
+                "price": 550,
+                "studentSlot": 15,
+                "totalStudent": 8
+            },
+            {
+                "name": "Technical Descents",
+                "image": "https://i.ytimg.com/vi/EcBKrtp2qNY/maxresdefault.jpg",
+                "price": 350,
+                "studentSlot": 7,
+                "totalStudent": 6
+            },
+            {
+                "name": "Mastering the Basics",
+                "image": "https://i.ytimg.com/vi/UDru0QE-b6Q/maxresdefault.jpg",
+                "price": 280,
+                "studentSlot": 20,
+                "totalStudent": 16
+            }
+        ]
+    },
+    {
+        "name": "Simon Andreassen",
+        "email": "simon@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_1759,y_0,h_1577,w_1577/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2023/4/11/r1bopbnet2fcm0d0ly5i/somin-andreassen",
+        "role": "instructor",
+        "quote": "Hard work pays off",
+        "classes": [
+            {
+                "name": "Unlocking Aerial Skills",
+                "image": "https://images.singletracks.com/blog/wp-content/uploads/2018/11/mountain-bike-skills-how-to-do-everything-erik-proano.jpg",
+                "price": 680,
+                "studentSlot": 25,
+                "totalStudent": 13
+            },
+            {
+                "name": "Conquer Challenging Terrain",
+                "image": "https://i.ytimg.com/vi/YP-6I109wnA/maxresdefault.jpg",
+                "price": 550,
+                "studentSlot": 15,
+                "totalStudent": 8
+            }
+        ]
+    },
+    {
+        "name": "Gee Atherton",
+        "email": "atherton@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_1566,y_111,h_1447,w_1447/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2023/6/2/bybg7ix6oyiymoaqkvjh/gee-atherton-portrait-utah",
+        "role": "instructor",
+        "quote": "If you're in control, you're not going fast enough",
+        "classes": [
+           
+            {
+                "name": "Cornering Techniques",
+                "image": "https://i.ytimg.com/vi/u_3aJejRjPU/maxresdefault.jpg",
+                "price": 520,
+                "studentSlot": 15,
+                "totalStudent": 13
+            },
+            {
+                "name": "Speed and Control techniques",
+                "image": "https://i.ytimg.com/vi/XjVG3EjO2Dg/maxresdefault.jpg",
+                "price": 280,
+                "studentSlot": 20,
+                "totalStudent": 16
+            },
+            {
+                "name": "Bike Maintenance 101",
+                "image": "https://img.redbull.com/images/c_crop,w_1999,h_999,x_1,y_269,f_auto,q_auto/c_scale,w_1200/redbullcom/2016/08/04/1331810354405_1/bike-checks-to-make-sure-it-runs-smoothly",
+                "price": 340,
+                "studentSlot": 28,
+                "totalStudent": 18
+            }           
+        ]
+    },
+    {
+        "name": "Fabio Wibmer",
+        "email": "wibmer@gmail.com",
+        "image": "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/4/23/t9diy35ew60j2jvf2xkd/fabio-wibmer-team-fabio-wibmer",
+        "role": "instructor",
+        "quote": "I love to ride bikes and do tricks!",
+        "classes": [
+           
+            {
+                "name": "Keeping Your MTB in Top Shape",
+                "image": "https://i.ytimg.com/vi/EviGDB8iMVA/maxresdefault.jpg",
+                "price": 220,
+                "studentSlot": 12,
+                "totalStudent": 11
+            },
+            {
+                "name": "Enduro Racing Strategies",
+                "image": "https://i.ytimg.com/vi/CjfaruJewTM/maxresdefault.jpg",
+                "price": 280,
+                "studentSlot": 20,
+                "totalStudent": 16
+            },
+            {
+                "name": "Bike Fit and Body Position",
+                "image": "https://www.mtbr.com/attachments/screen-shot-2018-09-11-at-1-43-25-pm-jpg.1871751/",
+                "price": 340,
+                "studentSlot": 28,
+                "totalStudent": 18
+            },
+            {
+                "name": "Mountain Bike Nutrition",
+                "image": "https://d2gqkshisthvn1.cloudfront.net/blog/wp-content/uploads/Voeding-adviesblog-ProBar-blog-Alex-reepjes-gelletjes-potten-eten-probar-sis-win2-clif-maxim-born-powerbar-eti-2-1200x801.jpg",
+                "price": 390,
+                "studentSlot": 18,
+                "totalStudent": 11
+            },
+            {
+                "name": "Skills Progression",
+                "image": "https://i.ytimg.com/vi/VIGIB-5NkaE/maxresdefault.jpg",
+                "price": 410,
+                "studentSlot": 12,
+                "totalStudent": 7
+            }
+        ]
+    },
+    {
+        "name": "Thomas Genon",
+        "email": "genon@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_534,y_0,h_2560,w_2560/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2023/5/22/kk1tuh46qsfmlgcryi8u/thomas-genon-portrait",
+        "role": "instructor",
+        "quote": "Keep improving day by day",
+        "classes": [
+           
+            {
+                "name": "Building Confidence on the Trails",
+                "image": "https://i.ytimg.com/vi/0TMuxmCW3hE/maxresdefault.jpg",
+                "price": 750,
+                "studentSlot": 22,
+                "totalStudent": 11
+            },
+            {
+                "name": "Bikepacking Essentials",
+                "image": "https://bikepacking.com/wp-content/uploads/2023/05/Bikepacking-101-Handbook_main.jpg",
+                "price": 610,
+                "studentSlot": 28,
+                "totalStudent": 13
+            }
+        ]
+    },
+    {
+        "name": "Jackson Goldstone",
+        "email": "goldstone@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_1385,y_59,h_1399,w_1400/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2022/9/12/jwaedvbudznl0ibqyhok/jackson-goldstone",
+        "role": "instructor",
+        "quote": "My love for the sport never stops",
+        "classes": [
+           
+            {
+                "name": "Mastering MTB Fundamentals",
+                "image": "https://masteringmtbskills.com/wp-content/uploads/2021/06/Mastering-MTB-Skills_MTB-Fundamentals_Rosemary-Hill.jpg",
+                "price": 480,
+                "studentSlot": 15,
+                "totalStudent": 12
+            },
+            {
+                "name": "Trailblazing Techniques",
+                "image": "https://www.rei.com/dam/content_team_080317_95995_mountain_biking_climbs_descents_lg.jpg?t=ea16by9xs",
+                "price": 690,
+                "studentSlot": 27,
+                "totalStudent": 17
+            },
+            {
+                "name": "Advanced Mountain Biking Skills",
+                "image": "https://i.ytimg.com/vi/OPzSzu5UN_U/mqdefault.jpg",
+                "price": 490,
+                "studentSlot": 22,
+                "totalStudent": 11
+            }
+        ]
+    },
+    {
+        "name": "Valentina Höll",
+        "email": "valentina@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_1815,y_263,h_950,w_949/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2023/4/17/t8vdq0rd0rrxehecjkjc/valentina-holl-rainbow-jersey",
+        "role": "instructor",
+        "quote": "Send it like a UPS package!",
+        "classes": [
+           
+            {
+                "name": "Enduro Dominance",
+                "image": "https://cdn.shopify.com/s/files/1/2318/5263/articles/Best_affordable_aluminum_enduro_MTB_1024x1024.jpg?v=1676059456",
+                "price": 430,
+                "studentSlot": 25,
+                "totalStudent": 13
+            },
+            {
+                "name": "Becoming Pro Downhill Rider",
+                "image": "https://i.ytimg.com/vi/sI7m6Qb-gJU/maxresdefault.jpg",
+                "price": 690,
+                "studentSlot": 21,
+                "totalStudent": 13
+            },
+            {
+                "name": "Cross-Country Crossroads",
+                "image": "https://cdn.shopify.com/s/files/1/0269/0395/collections/XC_style_mountain_bikes.jpg?v=1501728630",
+                "price": 420,
+                "studentSlot": 23,
+                "totalStudent": 11
+            }
+        ]
+    },
+    {
+        "name": "Matt Jones",
+        "email": "jones@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_594,y_96,h_2253,w_2254/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2023/6/2/cjyr6w2fgixd9yerml2k/matt-jones",
+        "role": "instructor",
+        "quote": "It's all about making your tricks look sick",
+        "classes": [
+           
+            {
+                "name": "Navigating Long-Distance Trails",
+                "image": "https://i.ytimg.com/vi/NpDa0gTK9NM/maxresdefault.jpg",
+                "price": 410,
+                "studentSlot": 15,
+                "totalStudent": 13
+            }
+        ]
+    },
+    {
+        "name": "Martin Maes",
+        "email": "martin@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_588,y_327,h_1116,w_1117/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2023/6/2/cafs8v2rbtrrklurxtry/martin-maes-portrait-2023",
+        "role": "instructor",
+        "quote": "Don't limit your challenges, challenge your limit",
+        "classes": [
+           
+            {
+                "name": "Jumpstart Jumps and Drops",
+                "image": "https://i.ytimg.com/vi/a67FD_YvciM/maxresdefault.jpg",
+                "price": 320,
+                "studentSlot": 12,
+                "totalStudent": 11
+            },
+            {
+                "name": "Preparation for your first race",
+                "image": "https://i.ytimg.com/vi/4C72fvk9jH8/maxresdefault.jpg",
+                "price": 380,
+                "studentSlot": 15,
+                "totalStudent": 12
+            },
+            {
+                "name": "Trailside Nutrition",
+                "image": "https://owenhousecycling.com/wp-content/uploads/2022/08/Owenhouse-Cycling-Trailside-Nutrition.jpg",
+                "price": 350,
+                "studentSlot": 19,
+                "totalStudent": 14
+            }
+        ]
+    },
+    {
+        "name": "Richie Rude",
+        "email": "richie@gmail.com",
+        "image": "https://img.redbull.com/images/c_crop,x_1515,y_170,h_934,w_934/c_fill,w_120,h_120/q_auto,f_auto/redbullcom/2023/6/2/cvfz2fiv92ssjtkcybet/richie-rude-portrait-2022",
+        "role": "instructor",
+        "quote": "Enjoy what you do and work for what you want",
+        "classes": [
+           
+            {
+                "name": "Airborne Acrobatics",
+                "image": "https://i.ytimg.com/vi/WAyOVFy6EdE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAWsS_eKIejxtETvivokbUv3Zp5Vw",
+                "price": 420,
+                "studentSlot": 15,
+                "totalStudent": 4
+            },
+            {
+                "name": "Trials Skills for Urban Environments",
+                "image": "https://bikerumor.com/wp-content/uploads/2022/04/Canyon-Stitched-CFR-Trial-carbon-street-trials-bike_photo-by-Hannes-Berger_Euro-pallet-tricks-800x533.jpg",
+                "price": 480,
+                "studentSlot": 12,
+                "totalStudent": 5
+            },
+            {
+                "name": "Combining Dirt Jumping and Trials Riding",
+                "image": "https://cyclingmagazine.ca/wp-content/uploads/2021/02/Dylan-Korba-how-we-got-here-.jpg",
+                "price": 450,
+                "studentSlot": 9,
+                "totalStudent": 4
+            }
+        ]
+    }
+]
