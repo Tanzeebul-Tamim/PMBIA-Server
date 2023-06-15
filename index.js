@@ -28,7 +28,10 @@ async function run() {
     const userCollection = client.db("PMBIA").collection("users");
 
     app.get('/instructors', async(req, res) => {
-        const result = await userCollection.find({ role: 'instructor' }).toArray();
+        const count = parseInt(req.query.count) || 0;
+        const search = req.query.search;
+        const query = search ? { role: 'instructor', name: { $regex: search, $options: 'i' } } : { role: 'instructor' };
+        const result = await userCollection.find(query).limit(count).toArray();
         res.send(result);
     })
 
