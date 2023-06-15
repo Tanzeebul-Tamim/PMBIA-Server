@@ -45,6 +45,31 @@ async function run() {
       res.send({ totalInstructors: count });
     });
 
+    // get top 6 instructors & get instructors with total students
+    app.get("/instructors/top", async (req, res) => {
+      const query = { role: "instructor" };
+      const instructors = await userCollection.find(query).toArray();
+
+      // Calculate the total number of students for each instructor
+      const instructorsWithTotalStudents = instructors.map((instructor) => {
+        const totalStudents = instructor.classes.reduce(
+          (total, classItem) => total + classItem.totalStudent,
+          0
+        );
+        return { ...instructor, totalStudents };
+      });
+
+      // Sort the instructors by the total number of students in descending order
+      const sortedInstructors = instructorsWithTotalStudents.sort(
+        (a, b) => b.totalStudents - a.totalStudents
+      );
+
+      // Retrieve the top 6 instructors with the most number of students
+      const topInstructors = sortedInstructors.slice(0, 6);
+
+      res.send({ topInstructors, instructorsWithTotalStudents });
+    });
+
     // get all classes
     app.get("/classes", async (req, res) => {
       const count = parseInt(req.query.count);
