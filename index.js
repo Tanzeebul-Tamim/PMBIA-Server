@@ -27,6 +27,8 @@ async function run() {
 
     const userCollection = client.db("PMBIA").collection("users");
 
+    // instructors api's--------------------------------------------------------------
+
     // get all instructors
     app.get("/instructors", async (req, res) => {
       const count = parseInt(req.query.count) || 0;
@@ -50,7 +52,6 @@ async function run() {
       const query = { role: "instructor" };
       const instructors = await userCollection.find(query).toArray();
 
-      // Calculate the total number of students for each instructor
       const instructorsWithTotalStudents = instructors.map((instructor) => {
         const totalStudents = instructor.classes.reduce(
           (total, classItem) => total + classItem.totalStudent,
@@ -59,16 +60,16 @@ async function run() {
         return { ...instructor, totalStudents };
       });
 
-      // Sort the instructors by the total number of students in descending order
       const sortedInstructors = instructorsWithTotalStudents.sort(
         (a, b) => b.totalStudents - a.totalStudents
       );
 
-      // Retrieve the top 6 instructors with the most number of students
       const topInstructors = sortedInstructors.slice(0, 6);
 
       res.send({ topInstructors, instructorsWithTotalStudents });
     });
+
+    // classes api's------------------------------------------------------------------------------
 
     // get all classes
     app.get("/classes", async (req, res) => {
@@ -104,6 +105,26 @@ async function run() {
         return total + instructor.classes.length;
       }, 0);
       res.send({ totalClasses });
+    });
+    
+    // get top 6 classes
+    app.get("/classes/top", async (req, res) => {
+      const query = { role: "instructor" };
+      const instructors = await userCollection.find(query).toArray();  
+      
+      let allClasses = instructors.flatMap((instructor) => {
+        const instructorName = instructor.name;
+        const instructorImg = instructor.image;
+        return instructor.classes.map((classItem) => ({
+          ...classItem,
+          instructorName,
+          instructorImg
+        }));
+      });
+  
+      const sortedClasses = allClasses.sort((a, b) => b.totalStudent - a.totalStudent);  
+      const topClasses = sortedClasses.slice(0, 6);   
+      res.send(topClasses);
     });
 
     // Send a ping to confirm a successful connection
