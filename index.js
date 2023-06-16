@@ -33,8 +33,39 @@ async function run() {
       const user = req.body;
       const query = { email: email };
       const options = { upsert: true };
-      const updateDoc = { $set: user };
-      const result = await userCollection.updateOne(query, updateDoc, options);
+
+      let updateDoc = {};
+      if (user.name) {
+        updateDoc.name = user.name;
+      }
+      if (user.image) {
+        updateDoc.image = user.image;
+      }
+      if (user.email) {
+        updateDoc.email = user.email;
+      }
+      if (user.gender) {
+        updateDoc.gender = user.gender;
+      }
+      if (user.contactNo) {
+        updateDoc.contactNo = user.contactNo;
+      }
+      if (user.address) {
+        updateDoc.address = user.address;
+      }
+      if (user.role) {
+        updateDoc.role = user.role;
+      }
+
+      const result = await userCollection.updateOne(query, { $set: updateDoc }, options);
+      res.send(result);
+    });
+
+    // get user from db
+    app.get('/users/:email', async(req, res) => {
+      const email = req.params.email;
+      const query = { email: email }
+      const result = await userCollection.findOne(query);
       res.send(result);
     });
 
