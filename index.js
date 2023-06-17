@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 const port = process.env.PORT || 5000;
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 // middleware
 app.use(cors());
@@ -26,9 +26,10 @@ async function run() {
     // await client.connect();
 
     const userCollection = client.db("PMBIA").collection("users");
+    const bookingsCollection = client.db("PMBIA").collection("bookings");
 
     // save user in db
-    app.put('/users/:email', async(req, res) => {
+    app.put("/users/:email", async (req, res) => {
       const email = req.params.email;
       const user = req.body;
       const query = { email: email };
@@ -57,14 +58,18 @@ async function run() {
         updateDoc.role = user.role;
       }
 
-      const result = await userCollection.updateOne(query, { $set: updateDoc }, options);
+      const result = await userCollection.updateOne(
+        query,
+        { $set: updateDoc },
+        options
+      );
       res.send(result);
     });
 
     // get user from db
-    app.get('/users/:email', async(req, res) => {
+    app.get("/users/:email", async (req, res) => {
       const email = req.params.email;
-      const query = { email: email }
+      const query = { email: email };
       const result = await userCollection.findOne(query);
       res.send(result);
     });
@@ -76,22 +81,22 @@ async function run() {
       const count = parseInt(req.query.count) || 0;
       const search = req.query.search;
       const query = search
-        ? { role: "instructor", name: { $regex: search, $options: "i" } }
-        : { role: "instructor" };
+        ? { role: "Instructor", name: { $regex: search, $options: "i" } }
+        : { role: "Instructor" };
       const result = await userCollection.find(query).limit(count).toArray();
       res.send(result);
     });
 
     // get number of instructors
     app.get("/instructors/total", async (req, res) => {
-      const query = { role: "instructor" };
+      const query = { role: "Instructor" };
       const count = await userCollection.countDocuments(query);
       res.send({ totalInstructors: count });
     });
 
     // get top 6 instructors & get instructors with total students
     app.get("/instructors/top", async (req, res) => {
-      const query = { role: "instructor" };
+      const query = { role: "Instructor" };
       const instructors = await userCollection.find(query).toArray();
 
       const instructorsWithTotalStudents = instructors.map((instructor) => {
@@ -111,20 +116,31 @@ async function run() {
       res.send({ topInstructors, instructorsWithTotalStudents });
     });
 
+    // get single instructor
+    app.get("/instructor/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id), role: "Instructor" };
+      const result = await userCollection.findOne(query);
+      res.send(result);
+    });
+
     // classes api's------------------------------------------------------------------------------
 
     // get all classes
     app.get("/classes", async (req, res) => {
       const count = parseInt(req.query.count);
       const search = req.query.search;
-      const query = { role: "instructor" };
+      const query = { role: "Instructor" };
       const instructors = await userCollection.find(query).toArray();
 
       let classes = instructors.flatMap((instructor) => {
         const instructorName = instructor.name;
-        return instructor.classes.map((classItem) => ({
+        const instructorId = instructor._id;
+        return instructor.classes.map((classItem, classIndex) => ({
           ...classItem,
           instructorName,
+          instructorId,
+          classIndex,
         }));
       });
 
@@ -141,32 +157,61 @@ async function run() {
 
     // get number of classes
     app.get("/classes/total", async (req, res) => {
-      const query = { role: "instructor" };
+      const query = { role: "Instructor" };
       const instructors = await userCollection.find(query).toArray();
       const totalClasses = instructors.reduce((total, instructor) => {
         return total + instructor.classes.length;
       }, 0);
       res.send({ totalClasses });
     });
-    
+
     // get top 6 classes
     app.get("/classes/top", async (req, res) => {
-      const query = { role: "instructor" };
-      const instructors = await userCollection.find(query).toArray();  
-      
+      const query = { role: "Instructor" };
+      const instructors = await userCollection.find(query).toArray();
+
       let allClasses = instructors.flatMap((instructor) => {
         const instructorName = instructor.name;
         const instructorImg = instructor.image;
         return instructor.classes.map((classItem) => ({
           ...classItem,
           instructorName,
-          instructorImg
+          instructorImg,
         }));
       });
-  
-      const sortedClasses = allClasses.sort((a, b) => b.totalStudent - a.totalStudent);  
-      const topClasses = sortedClasses.slice(0, 6);   
+
+      const sortedClasses = allClasses.sort(
+        (a, b) => b.totalStudent - a.totalStudent
+      );
+      const topClasses = sortedClasses.slice(0, 6);
       res.send(topClasses);
+    });
+
+    // post a booking
+    app.put("/book-class", async (req, res) => {
+      const { studentId, instructorId, classIndex } = req.body;
+      const query = { _id: new ObjectId(instructorId), role: "Instructor" };
+      const options = { upsert: true };
+      const instructor = await userCollection.findOne(query);
+      const selectedClass = instructor.classes[classIndex];
+      const booking = {
+        studentId: new ObjectId(studentId),
+        instructorId: instructor._id,
+        "class-name": selectedClass.name,
+        classImage: selectedClass.image,
+        classFee: selectedClass.price,
+      };
+      const updateDoc = { $set: booking };
+      const result = await bookingsCollection.updateOne({ "class-name": selectedClass.name } ,updateDoc, options);
+      res.send(result);
+    });
+
+    // get user bookings
+    app.get("/book-class/:studentId", async (req, res) => {
+      const { studentId } = req.params;
+      const query = { studentId: new ObjectId(studentId) };
+      const bookings = await bookingsCollection.find(query).toArray();
+      res.send(bookings);
     });
 
     // Send a ping to confirm a successful connection
