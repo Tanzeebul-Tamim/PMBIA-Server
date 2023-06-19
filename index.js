@@ -101,7 +101,7 @@ async function run() {
       const instructors = await userCollection.find(query).toArray();
 
       const instructorsWithTotalStudents = instructors.map((instructor) => {
-        const totalStudents = instructor.classes.reduce(
+        const totalStudents = instructor?.classes?.reduce(
           (total, classItem) => total + classItem.totalStudent,
           0
         );
@@ -144,13 +144,13 @@ async function run() {
     app.get("/classes", async (req, res) => {
       const count = parseInt(req.query.count);
       const search = req.query.search;
-      const query = { role: "Instructor" };
+      const query = { role: "Instructor", classes: { $exists: true, $ne: [] } };
       const instructors = await userCollection.find(query).toArray();
 
       let classes = instructors.flatMap((instructor) => {
         const instructorName = instructor.name;
         const instructorId = instructor._id;
-        return instructor.classes.map((classItem, classIndex) => ({
+        return instructor?.classes?.map((classItem, classIndex) => ({
           ...classItem,
           instructorName,
           instructorId,
@@ -160,7 +160,7 @@ async function run() {
 
       if (search) {
         classes = classes.filter((classItem) =>
-          classItem.name.toLowerCase().includes(search.toLowerCase())
+          classItem?.name.toLowerCase().includes(search.toLowerCase())
         );
       }
 
@@ -174,10 +174,10 @@ async function run() {
       const query = { role: "Instructor" };
       const instructors = await userCollection.find(query).toArray();
       const totalClasses = instructors.reduce((total, instructor) => {
-        return total + instructor.classes.length;
+        return total + (instructor?.classes?.length || 0);
       }, 0);
       res.send({ totalClasses });
-    });
+    });    
 
     // get top 6 classes
     app.get("/classes/top", async (req, res) => {
@@ -188,7 +188,7 @@ async function run() {
         const instructorName = instructor.name;
         const instructorImg = instructor.image;
         const instructorId = instructor._id;
-        return instructor.classes.map((classItem) => ({
+        return instructor?.classes?.map((classItem) => ({
           ...classItem,
           instructorName,
           instructorImg,
@@ -217,7 +217,7 @@ async function run() {
       const query = { _id: new ObjectId(instructorId), role: "Instructor" };
       const options = { upsert: true };
       const instructor = await userCollection.findOne(query);
-      const selectedClass = instructor.classes[classIndex];
+      const selectedClass = instructor?.classes[classIndex];
       const booking = {
         studentId: new ObjectId(studentId),
         instructorName: instructor.name,
