@@ -1,14 +1,98 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const nodemailer = require("nodemailer");
+const mg = require("nodemailer-mailgun-transport");
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 const stripe = require("stripe")(process.env.PAYMENT_SECRET_KEY);
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const moment = require("moment");
 
 // middleware
 app.use(cors());
 app.use(express.json());
+
+const auth = {
+  auth: {
+    api_key: process.env.EMAIL_PRIVATE_KEY,
+    domain: process.env.EMAIL_DOMAIN,
+  },
+};
+
+const transporter = nodemailer.createTransport(mg(auth));
+
+// send payment confirmation email
+const sendPaymentConfirmationEmail = (
+  payment,
+  className,
+  instructorName,
+  price
+) => {
+  const startDate = moment().add(7, "days");
+  const endDate = moment(startDate).add(25, "days");
+
+  const durationInDays = endDate.diff(startDate, "days");
+  transporter.sendMail(
+    {
+      from: "tamim200091@gmail.com", // verified sender email
+      to: payment.studentEmail, // recipient email
+      subject: "Thank you for your course purchase!", // Subject line
+      text: "Hello world!", // plain text body
+      html: `
+      <div
+      style="width: 50%; background-color: #0e0d0d; color: white; padding: 50px; border-radius: 20px;">
+      <div style="text-align: center;">
+          <img style="width: 48%; margin-bottom: 20px;" src="https://i.ibb.co/7gCjkHF/pmbia-logo-word-reverse.png" />
+      </div>
+      <p>${moment(new Date()).format("Do MMMM, YYYY")}</p>
+      <p>Dear ${payment.studentName},</p>
+      <br />
+      <p>
+          Thank you for choosing PMBIA (Professional Mountain Biking Instructors Association) for your mountain biking
+          course. We are thrilled to have you join us and embark on this exciting journey of learning and adventure!
+      </p>
+      <br />
+      <p>Course Details:</p>
+      <p>Course Name: ${className}</p>
+      <p>Instructor: ${instructorName}</p>
+      <p>Start Date: ${startDate.format("Do MMMM YYYY")}</p>
+      <p>End Date: ${endDate.format("Do MMMM YYYY")}</p>
+      <p>Duration: ${durationInDays} days</p>
+      <p>Location: Duifkruid 84, 4007 SZ Tiel, Netherlands</p>
+      <br />
+      <p>Payment Details:</p>
+      <p>Transaction ID: ${payment.transactionId}</p>
+      <p>Payment Amount: $ ${price}</p>
+      <p>Date of Payment: ${moment(payment.date).format(
+        "dddd, Do MMMM YYYY, hh:mm a"
+      )}</p>
+      <br />
+      <p>Best regards,</p>
+      <p>Tanzeebul Tamim,</p>
+      <p>Chief Executive Officer,</p>
+      <p>PMBIA ltd</p>
+      <br />
+      <div style="text-align: center;">
+          <h2>Team PMBIA</h2>
+          <p>Delivering exceptional services since 2006.</p>
+          <p><strong>Site :</strong> <span
+                  style="text-decoration-line: underline; color: #4285F4;">https://pmbia-55816.web.app/</span></p>
+          <p><strong>Address :</strong> Duifkruid 84, 4007 SZ Tiel, Netherlands</p>
+          <p><strong>Phone :</strong> +31644460635 | <strong>Email :</strong> info@pmbia.com</p>
+      </div>
+  </div>
+    `, // html body
+    },
+    function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    }
+  );
+};
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.y70m6ei.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -31,40 +115,50 @@ async function run() {
 
     // save user in db
     app.put("/users/:email", async (req, res) => {
-      const email = req.params.email;
-      const user = req.body;
-      const query = { email: email };
-      const options = { upsert: true };
+      try {
+        const email = req.params.email;
+        const user = req.body;
+        const query = { email: email };
+        const options = { upsert: true };
 
-      let updateDoc = {};
-      if (user.name) {
-        updateDoc.name = user.name;
-      }
-      if (user.image) {
-        updateDoc.image = user.image;
-      }
-      if (user.email) {
-        updateDoc.email = user.email;
-      }
-      if (user.gender) {
-        updateDoc.gender = user.gender;
-      }
-      if (user.contactNo) {
-        updateDoc.contactNo = user.contactNo;
-      }
-      if (user.address) {
-        updateDoc.address = user.address;
-      }
-      if (user.role) {
-        updateDoc.role = user.role;
-      }
+        let updateDoc = {};
+        if (user.name) {
+          updateDoc.name = user.name;
+        }
+        if (user.image) {
+          updateDoc.image = user.image;
+        }
+        if (user.email) {
+          updateDoc.email = user.email;
+        }
+        if (user.gender) {
+          updateDoc.gender = user.gender;
+        }
+        if (user.contactNo) {
+          updateDoc.contactNo = user.contactNo;
+        }
+        if (user.address) {
+          updateDoc.address = user.address;
+        }
+        if (user.role) {
+          updateDoc.role = user.role;
+        }
 
-      const result = await userCollection.updateOne(
-        query,
-        { $set: updateDoc },
-        options
-      );
-      res.send(result);
+        if (user.quote) {
+          updateDoc.quote = user.quote;
+        }
+
+        const result = await userCollection.updateOne(
+          query,
+          { $set: updateDoc },
+          options
+        );
+
+        res.send(result);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Error updating user data.");
+      }
     });
 
     // get user from db
@@ -127,16 +221,15 @@ async function run() {
 
     // update instructors available seat
     app.put("/instructor/updateStudentCount", async (req, res) => {
-      const { instructorId, classIndex } = req.body; 
+      const { instructorId, classIndex } = req.body;
       const query = { _id: new ObjectId(instructorId), role: "Instructor" };
-      const instructor = await userCollection.findOne(query);    
-      let classItem = instructor.classes[classIndex];    
-      classItem.totalStudent += 1;    
-      const update = { $set: { classes: instructor.classes } };    
-      const result = await userCollection.updateOne(query, update);     
+      const instructor = await userCollection.findOne(query);
+      let classItem = instructor.classes[classIndex];
+      classItem.totalStudent += 1;
+      const update = { $set: { classes: instructor.classes } };
+      const result = await userCollection.updateOne(query, update);
       res.send(result);
     });
-    
 
     // classes api's------------------------------------------------------------------------------
 
@@ -177,7 +270,7 @@ async function run() {
         return total + (instructor?.classes?.length || 0);
       }, 0);
       res.send({ totalClasses });
-    });    
+    });
 
     // get top 6 classes
     app.get("/classes/top", async (req, res) => {
@@ -208,6 +301,8 @@ async function run() {
       const {
         studentId,
         instructorId,
+        studentEmail,
+        studentName,
         classIndex,
         paymentStatus,
         transactionId,
@@ -220,11 +315,13 @@ async function run() {
       const selectedClass = instructor?.classes[classIndex];
       const booking = {
         studentId: new ObjectId(studentId),
-        instructorName: instructor.name,
-        instructorId: instructor._id,
-        "class-name": selectedClass.name,
-        classImage: selectedClass.image,
-        classFee: selectedClass.price,
+        studentEmail,
+        studentName,
+        instructorName: instructor?.name,
+        instructorId: instructor?._id,
+        "class-name": selectedClass?.name,
+        classImage: selectedClass?.image,
+        classFee: selectedClass?.price,
         paymentStatus,
         classIndex,
         transactionId,
@@ -241,6 +338,16 @@ async function run() {
         updateDoc,
         options
       );
+      // send confirmation email
+      if (paymentStatus == "paid") {
+        sendPaymentConfirmationEmail(
+          req.body,
+          selectedClass.name,
+          instructor.name,
+          selectedClass.price
+        );
+      }
+
       res.send(result);
     });
 
