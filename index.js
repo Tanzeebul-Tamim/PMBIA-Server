@@ -41,7 +41,7 @@ const sendPaymentConfirmationEmail = (
       text: "Hello world!", // plain text body
       html: `
       <div
-      style="width: 50%; background-color: #0e0d0d; color: white; padding: 50px; border-radius: 20px;">
+      style="width: 85%; background-color: #0e0d0d; color: white; padding: 20px; border-radius: 20px;">
       <div style="text-align: center;">
           <img style="width: 48%; margin-bottom: 20px;" src="https://i.ibb.co/7gCjkHF/pmbia-logo-word-reverse.png" />
       </div>
