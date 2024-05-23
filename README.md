@@ -29,6 +29,17 @@ Welcome to the server-side repository of the PMBIA (Professional Mountain Biking
 - Node.js and npm installed.
 - MongoDB installed and running.
 
+## Project Structure
+
+```
+├── .gitignore          # Lists files for Git to ignore
+├── README.md           # Project documentation
+├── index.js            # Main entry point of the application
+├── package.lock.json   # Exact dependency tree
+├── package.json        # Project metadata and dependencies
+├── vercel.json         # Vercel deployment settings
+```
+
 ## Installation
 
 1. Clone the repository:
