@@ -5,11 +5,13 @@ Welcome to the server-side repository of the PMBIA (Professional Mountain Biking
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Prerequisites](#prerequisites)
+- [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Live Server](#live-server)
 - [Running the Application](#running-the-application)
 - [API Endpoints](#api-endpoints)
+- [Contributing](#Contributing)
 
 ## Features
 
