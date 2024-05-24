@@ -11,6 +11,7 @@ Welcome to the server-side repository of the PMBIA (Professional Mountain Biking
 - [Live Server](#live-server)
 - [Running the Application](#running-the-application)
 - [API Endpoints](#api-endpoints)
+- [Also checkout PMBIA-Client](#also-checkout-pmbia-client)
 - [Contributing](#contributing)
 
 ## Features
@@ -103,9 +104,9 @@ The server will be running on: https://summer-camp-school-server-ivory.vercel.ap
 ### Payment
 - ***POST*** `/create-payment-intent`: Create payment intent
 
+## Also checkout PMBIA-Client
+Visit the client-side repository of the PMBIA website - https://github.com/Tanzeebul-Tamim/PMBIA-Client
+
 ## Contributing
 
 Feel free to contribute by submitting a pull request. Please ensure that your code follows the project's coding standards and includes relevant tests.
-
-## Also checkout PMBIA-Client
-Visit the client-side repository of the PMBIA website - https://github.com/Tanzeebul-Tamim/PMBIA-Client
