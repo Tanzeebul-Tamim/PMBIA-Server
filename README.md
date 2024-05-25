@@ -19,6 +19,7 @@ Welcome to the server-side repository of the PMBIA (Professional Mountain Biking
 - CRUD operations for users and items.
 - Database interactions using MongoDb.
 - Environment-based configuration.
+- Search and sort functionality for instructors and courses
 
 ## Technologies Used
 
