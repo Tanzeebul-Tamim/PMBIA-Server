@@ -62,6 +62,8 @@ Create a `.env` file in the root of the `server` directory and add the following
 
 ```
 PORT=5000
+DB_USER=your_db_user
+DB_PASS=your_db_password
 MONGODB_URI=your_mongodb_connection_string
 ```
 
