@@ -48,8 +48,8 @@ Welcome to the server-side repository of the PMBIA (Professional Mountain Biking
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Tanzeebul-Tamim/PMBIA-server-assignment-12
-    cd your-repo-name/server
+    git clone https://github.com/Tanzeebul-Tamim/PMBIA-Server
+    cd PMBIA-Server
     ```
 
 2. Install dependencies:
@@ -70,7 +70,7 @@ MONGODB_URI=your_mongodb_connection_string
 
 ## Live Server
 
-The server will be running on: https://summer-camp-school-server-ivory.vercel.app/
+The server is deployed on [this following URL](https://summer-camp-school-server-ivory.vercel.app/)
 
 ## Running the Application
 
@@ -108,7 +108,7 @@ The server will be running on: https://summer-camp-school-server-ivory.vercel.ap
 - ***POST*** `/create-payment-intent`: Create payment intent
 
 ## Also checkout PMBIA-Client
-Visit the client-side repository of the PMBIA website - https://github.com/Tanzeebul-Tamim/PMBIA-Client
+Visit the client-side repository of the [PMBIA](https://github.com/Tanzeebul-Tamim/PMBIA-Client) website
 
 ## Contributing
 
