@@ -13,6 +13,7 @@ Welcome to the server-side repository of the PMBIA (Professional Mountain Biking
 - [API Endpoints](#api-endpoints)
 - [Also checkout PMBIA-Client](#also-checkout-pmbia-client)
 - [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
