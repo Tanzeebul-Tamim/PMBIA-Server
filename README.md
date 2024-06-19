@@ -1,4 +1,4 @@
-# PMBIA - Server Side
+# <img src="https://github.com/Tanzeebul-Tamim/PMBIA-Client/blob/main/public/icon.png" alt="Logo" width="85"/> PMBIA - Server Side
 Welcome to the server-side repository of the PMBIA (Professional Mountain Biking Instructors' Association) website. It is responsible for handling API requests and managing the database functionalities.
 
 ## Table of Contents
